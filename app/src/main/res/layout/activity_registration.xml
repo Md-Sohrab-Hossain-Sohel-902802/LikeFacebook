@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="120dp"
+    tools:context=".Activitys.RegistrationActivity">
+
+
+    <EditText
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/inputs_design"
+        android:hint="Name "
+        android:paddingLeft="10dp"
+        android:id="@+id/registrationNameEdittext"
+        />
+    <EditText
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/registrationNameEdittext"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/inputs_design"
+        android:hint="Email "
+        android:paddingLeft="10dp"
+        android:id="@+id/registrationEmailEdittextid"
+        />
+
+    <EditText
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/inputs_design"
+        android:hint="Password "
+        android:layout_below="@+id/registrationEmailEdittextid"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/registrationpasswordEdittextid"
+        />
+
+    <EditText
+
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/inputs_design"
+        android:hint="Phone Number "
+        android:layout_below="@+id/registrationpasswordEdittextid"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/phoneNumberEdittextid"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/buttons_design"
+        android:text="Create Account"
+        android:layout_below="@+id/phoneNumberEdittextid"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/registrationCreateAccountButtonid"
+        android:textColor="#fff"
+        android:textAllCaps="false"
+        android:textAlignment="center"
+
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/buttons_design"
+        android:text="Already Have An Account"
+        android:layout_below="@+id/registrationCreateAccountButtonid"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/registrationalreadyhaveAnAccount"
+        android:textColor="#fff"
+        android:textAllCaps="false"
+        android:textAlignment="center"
+
+        />
+
+
+
+</RelativeLayout>

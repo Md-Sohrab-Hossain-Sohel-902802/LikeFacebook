@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/postItem_NameTextviewid"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:text="Md  Sohrab "
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/postItem_NameTextviewid"
+        android:id="@+id/postItem_PostImageViewid"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/postItem_Textviewid"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:layout_below="@+id/postItem_PostImageViewid"
+        android:text="Md  Sohrab "
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        />
+
+    <com.like.LikeButton
+        android:layout_marginTop="15dp"
+        app:icon_type="heart"
+        app:icon_size="8dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/postItem_hearButtonid"
+
+        android:layout_below="@+id/postItem_Textviewid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/postItem_hearButtonid"
+        android:layout_below="@+id/postItem_Textviewid"
+        android:layout_marginLeft="10dp"
+        android:text="10"
+        android:id="@+id/postItem_LikeCount"
+
+        />
+
+
+
+
+</RelativeLayout>

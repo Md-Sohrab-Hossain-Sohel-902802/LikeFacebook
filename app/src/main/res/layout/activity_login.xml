@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activitys.LoginActivity"
+    android:padding="20dp"
+    >
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/inputs_design"
+        android:hint="Email "
+        android:inputType="textEmailAddress"
+        android:paddingLeft="10dp"
+        android:id="@+id/loginEmailEdittextid"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/inputs_design"
+        android:hint="Password "
+        android:inputType="textPassword"
+        android:layout_below="@+id/loginEmailEdittextid"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/loginPasswordEdittextid"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/buttons_design"
+        android:text="Log in"
+        android:layout_below="@+id/loginPasswordEdittextid"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/loginCreateAccountButtonid"
+       android:textColor="#fff"
+        android:textAllCaps="false"
+        android:textAlignment="center"
+
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/buttons_design"
+        android:text="Already Have An Account"
+        android:layout_below="@+id/loginCreateAccountButtonid"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/alreadyhaveAnAccount"
+       android:textColor="#fff"
+        android:textAllCaps="false"
+        android:textAlignment="center"
+
+        />
+
+
+
+
+
+
+</RelativeLayout>
