@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+
 public class RegistrationActivity extends AppCompatActivity {
 
 
@@ -151,8 +153,20 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
                     String  currentUser= mAuth.getCurrentUser().getUid();
-                    UserData userData=new UserData(email,password,currentUser,phoneNumber,name);
-                    databaseReference.child(currentUser).setValue( userData).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+
+                    HashMap<String,Object> userdata=new HashMap<>();
+                    userdata.put("email",email);
+                    userdata.put("password",password);
+                    userdata.put("uid",currentUser);
+                    userdata.put("phonenumber",phoneNumber);
+                    userdata.put("name",name);
+
+
+
+
+
+                  databaseReference.child(currentUser).setValue( userdata).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()) {

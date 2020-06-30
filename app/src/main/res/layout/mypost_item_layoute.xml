@@ -5,7 +5,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/postItem_UserProfileImageid"
+        />
     <TextView
+        android:layout_toRightOf="@id/postItem_UserProfileImageid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/postItem_NameTextviewid"
@@ -13,16 +22,17 @@
         android:textColor="#000"
         android:textStyle="bold"
         android:text="Md  Sohrab "
-        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"
+
         android:layout_marginLeft="10dp"
         />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="280dp"
-
+        android:layout_marginTop="7dp"
         android:scaleType="centerCrop"
-        android:layout_below="@+id/postItem_NameTextviewid"
+        android:layout_below="@+id/postItem_UserProfileImageid"
         android:id="@+id/postItem_PostImageViewid"
         />
     <TextView
@@ -30,6 +40,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/postItem_Textviewid"
         android:textSize="20sp"
+        android:layout_marginTop="10dp"
         android:textColor="#000"
         android:layout_below="@+id/postItem_PostImageViewid"
         android:text="Md  Sohrab "

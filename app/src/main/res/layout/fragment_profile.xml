@@ -24,13 +24,26 @@
                 android:id="@+id/profile_ProfileImageViewid"
                 />
 
+            <Button
+                android:layout_marginTop="10dp"
+                android:id="@+id/profile_ImageUploadButtonid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_ProfileImageViewid"
+                android:layout_centerHorizontal="true"
+                android:text="Upload"
+                android:textAllCaps="false"
+                android:background="#457889"
+                android:textColor="#fff"
+                android:visibility="gone"
+                />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/profile_NameTextviewid"
-                android:layout_below="@+id/profile_ProfileImageViewid"
+                android:layout_below="@+id/profile_ImageUploadButtonid"
                 android:textSize="20sp"
                 android:layout_centerHorizontal="true"
                 android:text="Md Sohrab Hossian Sohel"

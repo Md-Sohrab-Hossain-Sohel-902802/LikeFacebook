@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import com.example.likefacebook.Activitys.LoginActivity;
 import com.example.likefacebook.Activitys.MyPostActivity;
+import com.example.likefacebook.Activitys.NotificationListActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -88,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
 
         }    if(item.getItemId()==R.id.mypostMenuButtonid){
             Intent intent=new Intent(MainActivity.this, MyPostActivity.class);
+            startActivity(intent);
+
+        }  if(item.getItemId()==R.id.notificationMenuButtonid){
+            Intent intent=new Intent(MainActivity.this, NotificationListActivity.class);
             startActivity(intent);
 
         }

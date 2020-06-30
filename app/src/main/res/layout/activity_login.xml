@@ -57,7 +57,7 @@
         android:padding="10dp"
         android:layout_centerInParent="true"
         android:background="@drawable/buttons_design"
-        android:text="Already Have An Account"
+        android:text="Create An Account"
         android:layout_below="@+id/loginCreateAccountButtonid"
         android:layout_marginTop="20dp"
         android:paddingLeft="10dp"

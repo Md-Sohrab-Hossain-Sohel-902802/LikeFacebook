@@ -25,10 +25,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public   class  MyPostAdapter extends  RecyclerView.Adapter<MyPostAdapter.MYViewHOlder> {
 
@@ -61,9 +64,11 @@ public   class  MyPostAdapter extends  RecyclerView.Adapter<MyPostAdapter.MYView
         holder.nameTextview.setText(data.getName());
         holder.textView.setText(data.getText());
 
-         cheking(data.getPostid(),holder.likeButton);
+
+            lastUpdate(holder.profileimageView,data.getUserid());
 
 
+        cheking(data.getPostid(),holder.likeButton);
 
 
 
@@ -215,6 +220,50 @@ public   class  MyPostAdapter extends  RecyclerView.Adapter<MyPostAdapter.MYView
 
     }
 
+    public void lastUpdate(final CircleImageView profileimageView,String  postedUserid) {
+
+
+        FirebaseAuth mAuth;
+        DatabaseReference databaseReference;
+
+
+        mAuth=FirebaseAuth.getInstance();
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("users");
+        String currentUser=mAuth.getCurrentUser().getUid();
+
+
+        databaseReference.child(postedUserid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+
+                    if(snapshot.hasChild("image")){
+                        String image=snapshot.child("image").getValue().toString();
+                        Picasso.with(context).load(image).placeholder(R.drawable.profile_image).into(profileimageView);
+
+                    }else{
+                        Picasso.with(context).load(R.drawable.profile_image).into(profileimageView);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+    }
+
     private void cheking(final String postid, final LikeButton likeButton) {
 
         FirebaseAuth mAuth;
@@ -253,12 +302,13 @@ public   class  MyPostAdapter extends  RecyclerView.Adapter<MyPostAdapter.MYView
         TextView nameTextview,textView,likeCount;
         ImageView postImageview;
         LikeButton likeButton;
+        CircleImageView profileimageView;
 
         public MYViewHOlder(@NonNull View itemView) {
             super(itemView);
 
 
-
+            profileimageView=itemView.findViewById(R.id.postItem_UserProfileImageid);
             nameTextview=itemView.findViewById(R.id.postItem_NameTextviewid);
             textView=itemView.findViewById(R.id.postItem_Textviewid);
             postImageview=itemView.findViewById(R.id.postItem_PostImageViewid);

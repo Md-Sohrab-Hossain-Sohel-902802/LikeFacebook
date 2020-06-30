@@ -7,22 +7,33 @@ public class UserData {
         String uid;
         String phonenumber;
         String name;
+        String image;
 
 
     public UserData() {
     }
 
-    public UserData(String email, String password, String uid,String phonenumber,String name) {
+    public UserData(String email, String password, String uid,String phonenumber,String name,String image) {
         this.email = email;
         this.password = password;
         this.uid = uid;
         this.phonenumber=phonenumber;
         this.name=name;
+        this.image=image;
     }
 
 
     public String getEmail() {
         return email;
+    }
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setEmail(String email) {
