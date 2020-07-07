@@ -27,14 +27,6 @@
         android:layout_marginLeft="10dp"
         />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:layout_marginTop="7dp"
-        android:scaleType="centerCrop"
-        android:layout_below="@+id/postItem_UserProfileImageid"
-        android:id="@+id/postItem_PostImageViewid"
-        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,11 +34,21 @@
         android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:textColor="#000"
-        android:layout_below="@+id/postItem_PostImageViewid"
+        android:layout_below="@+id/postItem_UserProfileImageid"
         android:text="Md  Sohrab "
         android:layout_alignParentStart="true"
         android:layout_marginLeft="10dp"
         />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_marginTop="7dp"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/postItem_Textviewid"
+        android:id="@+id/postItem_PostImageViewid"
+        />
+
 
     <com.like.LikeButton
         android:layout_marginTop="15dp"
@@ -54,8 +56,7 @@
         app:icon_size="8dp"
         android:layout_marginLeft="10dp"
         android:id="@+id/postItem_hearButtonid"
-
-        android:layout_below="@+id/postItem_Textviewid"
+        android:layout_below="@+id/postItem_PostImageViewid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -64,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/postItem_hearButtonid"
-        android:layout_below="@+id/postItem_Textviewid"
+        android:layout_below="@+id/postItem_PostImageViewid"
         android:layout_marginLeft="10dp"
         android:text="10"
         android:id="@+id/postItem_LikeCount"

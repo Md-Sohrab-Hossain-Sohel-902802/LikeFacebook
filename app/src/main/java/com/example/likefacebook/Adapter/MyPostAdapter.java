@@ -75,6 +75,8 @@ public   class  MyPostAdapter extends  RecyclerView.Adapter<MyPostAdapter.MYView
         String image=data.getImage();
         if(image.equals("null")){
             holder.postImageview.setVisibility(View.GONE);
+        }else{
+            Picasso.with(context).load(data.getImage()).placeholder(R.drawable.profile_image).into(holder.postImageview);
         }
 
 

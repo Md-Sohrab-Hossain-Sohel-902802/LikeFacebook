@@ -52,16 +52,42 @@
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
                 />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_ChooseImageTextviewid"
+                android:layout_below="@+id/profile_NameTextviewid"
+                android:textSize="20sp"
+                android:layout_centerHorizontal="true"
+                android:text="Choose An Image for Post?"
+                android:textAlignment="center"
+                android:layout_marginTop="15dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                />
 
+
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:id="@+id/profiel_postImageViewid"
+                android:layout_below="@+id/profile_ChooseImageTextviewid"
+                android:src="@drawable/profile_image"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                />
 
 
 
             <EditText
+                android:layout_below="@+id/profile_ChooseImageTextviewid"
                 android:hint="Whats On Your Mind?"
                 android:id="@+id/profile_postEdittextid"
-                android:layout_width="260dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/profile_NameTextviewid"
+                android:layout_toRightOf="@+id/profiel_postImageViewid"
                 android:layout_marginTop="25dp"
                 android:padding="20dp"
                 android:textSize="15sp"
@@ -82,7 +108,7 @@
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                android:layout_toRightOf="@+id/profile_postEdittextid"
-                android:layout_below="@+id/profile_NameTextviewid"
+                android:layout_below="@+id/profile_ChooseImageTextviewid"
                 />
 
 

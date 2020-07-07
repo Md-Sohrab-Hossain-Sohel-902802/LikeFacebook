@@ -1,6 +1,7 @@
 package com.example.likefacebook.ui;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +64,10 @@ public class ProfileFragment extends Fragment {
     private Uri imageUri;
 
 
+    private ImageView imageView;
+    private  TextView chooseImage;
+
+
 
 
 
@@ -78,6 +84,10 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
+
+
+
+
 
 
         progressDialog=new ProgressDialog(getContext());
@@ -97,6 +107,23 @@ public class ProfileFragment extends Fragment {
         postButton=root.findViewById(R.id.profile_postButtonid);
         saveImageButton=root.findViewById(R.id.profile_ImageUploadButtonid);
 
+        chooseImage=root.findViewById(R.id.profile_ChooseImageTextviewid);
+        imageView=root.findViewById(R.id.profiel_postImageViewid);
+
+
+        chooseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                // intent.setType("application/pdf");
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent,"Select Image"),2);
+
+            }
+        });
+
+
 
         saveImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +138,12 @@ public class ProfileFragment extends Fragment {
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        postData();
+                if(imageUri==null){
+                    postData();
+                }else{
+                    saveImage2();
+                }
+
             }
         });
 
@@ -148,6 +180,14 @@ public class ProfileFragment extends Fragment {
     }
 
     private void postData() {
+
+
+
+        final ProgressDialog progressDialog=new ProgressDialog(getContext());
+        progressDialog.setTitle("Uploading.......");
+        progressDialog.show();
+
+
         String currentUser=mAuth.getCurrentUser().getUid();
 
 
@@ -181,6 +221,7 @@ public class ProfileFragment extends Fragment {
                                         if(task.isSuccessful()){
                                             Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
                                             postEdittext.setText("");
+                                            progressDialog.dismiss();
                                         }
                                     }
                                 });
@@ -256,6 +297,14 @@ public class ProfileFragment extends Fragment {
                 imageUri=data.getData();
             Picasso.with(getContext()).load(imageUri).into(profileImage);
 
+        }    else    if(requestCode==2 && resultCode==RESULT_OK && data.getData()!=null && data !=null){
+
+           imageUri=data.getData();
+           imageView.setVisibility(View.VISIBLE);
+            postEdittext.setWidth(30);
+            Picasso.with(getContext()).load(imageUri).into(imageView);
+
+
         }
 
 
@@ -267,6 +316,102 @@ public class ProfileFragment extends Fragment {
 
 
     }
+
+
+
+
+    private void saveImage2() {
+
+
+
+        final ProgressDialog progressDialog=new ProgressDialog(getContext());
+        progressDialog.setTitle("Uploading.......");
+        progressDialog.show();
+
+
+        String currentUser=mAuth.getCurrentUser().getUid();
+
+
+
+
+        final long time=System.currentTimeMillis();
+        StorageReference reference=storageReference.child("Post/"+currentUser+"/"+time+".jpg");
+        reference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                Task<Uri> uri=taskSnapshot.getStorage().getDownloadUrl();
+                while (!uri.isSuccessful());
+                Uri url=uri.getResult();
+
+                String currentUser=mAuth.getCurrentUser().getUid();
+
+
+                String post=postEdittext.getText().toString();
+                if(TextUtils.isEmpty(post)){
+                    Toast.makeText(getContext(), "Write Something The Click Post Button", Toast.LENGTH_SHORT).show();
+                }else{
+                    DatabaseReference postRefrence=FirebaseDatabase.getInstance().getReference();
+
+                    final String key=postRefrence.push().getKey();
+
+                    final HashMap<String,Object> postMap=new HashMap<>();
+                    postMap.put("text",post);
+                    postMap.put("image",url.toString());
+                    postMap.put("like","0");
+                    postMap.put("comment","0");
+                    postMap.put("postid",key);
+                    postMap.put("userid",currentUser);
+                    postMap.put("name",name);
+
+
+                    postRefrence.child(currentUser).child("userpost").child(key).setValue(postMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+
+                                DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("AllPost");
+                                databaseReference.child(key).setValue(postMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            progressDialog.dismiss();
+                                            Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+                                            postEdittext.setText("");
+                                        }
+                                    }
+                                });
+
+                            }
+                        }
+                    });
+
+
+
+
+                }
+
+
+
+
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+    }
+
+
+
+
+
 
 
     private void saveImage() {
@@ -318,6 +463,14 @@ public class ProfileFragment extends Fragment {
 
 
     }
+
+
+
+
+
+
+
+
 
 
 
